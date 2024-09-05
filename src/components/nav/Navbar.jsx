@@ -1,13 +1,19 @@
-import React from "react";
+import React, {useState} from "react";
 
-function Navbar() {
+function Navbar(props) {
+    console.log(props.data);
+    const menuItems = props.data;
+    const [count,setCount] = useState(5);
+    
     return (
       <div>
         <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
           <div className="container-fluid">
             <a className="navbar-brand" href="test">
-              Navbar
+              {menuItems.home}
             </a>
+            <button onClick={()=> setCount(count + 1)}></button>
+            <p>output: {count}</p>
             <button
               className="navbar-toggler"
               type="button"
@@ -23,23 +29,12 @@ function Navbar() {
               <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                 <li className="nav-item">
                   <a className="nav-link active" aria-current="page" href="text">
-                    Home
+                  {menuItems.about}
                   </a>
                 </li>
                 <li className="nav-item">
                   <a className="nav-link" href="test">
-                    Link
-                  </a>
-                </li>
-                
-                <li className="nav-item">
-                  <a
-                    className="nav-link disabled"
-                    href="text"
-                    tabindex="-1"
-                    aria-disabled="true"
-                  >
-                    Disabled
+                  {menuItems.trending}
                   </a>
                 </li>
               </ul>
