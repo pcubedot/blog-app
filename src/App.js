@@ -1,10 +1,14 @@
 import './App.css';
 import Navbar from './components/nav/Navbar';
+import SignUp from './components/login-signup/SignUp';
+import Login from './components/login-signup/Login';
 function App() {
   const menuName = { home: "Home", about:"About",trending: "Trending", loggrdInUser: null};
   return (
     <div className="App">
       <Navbar data={menuName} />
+      <SignUp />
+      <Login />
     </div>
   );
 }
