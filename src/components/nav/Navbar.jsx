@@ -1,9 +1,8 @@
-import React, {useState} from "react";
+import React from "react";
 
 function Navbar(props) {
     console.log(props.data);
     const menuItems = props.data;
-    const [count,setCount] = useState(5);
     
     return (
       <div>
@@ -12,8 +11,7 @@ function Navbar(props) {
             <a className="navbar-brand" href="test">
               {menuItems.home}
             </a>
-            <button onClick={()=> setCount(count + 1)}></button>
-            <p>output: {count}</p>
+            
             <button
               className="navbar-toggler"
               type="button"
@@ -38,10 +36,18 @@ function Navbar(props) {
                   </a>
                 </li>
               </ul>
+              <ul className="navbar-nav pt-4 mb-2 mb-lg-0">
+                <li className="nav-item">
+                  <a className="nav-link active p-0" aria-current="page" href="login">
+                  Login/Sign Up
+                  </a>
+                </li>
+                
+              </ul>
           
               <li className="nav-item dropdown">
                   <a
-                    className="nav-link dropdown-toggle"
+                    className="nav-link dropdown-toggle p-0"
                     href="text"
                     id="navbarDropdown"
                     role="button"
