@@ -47,7 +47,7 @@ function Navbar(props) {
           
               <li className="nav-item dropdown">
                   <a
-                    className="nav-link dropdown-toggle p-0"
+                    className="nav-link dropdown-toggle p-0 px-2"
                     href="text"
                     id="navbarDropdown"
                     role="button"
@@ -55,7 +55,7 @@ function Navbar(props) {
                     aria-expanded="false"
                     style={{color: '#f1f3f5'}}
                   >
-                    Dropdown
+                    {menuItems.loggedInUser}
                   </a>
                   <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                     <li>

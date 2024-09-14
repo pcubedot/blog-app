@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 
-const Login = () => {
+const Login = ({ sendDataToParent }) => {
      
   const [email, setemail] = useState('Enter Your Email');
   const [password, setPassword] = useState('');
@@ -11,7 +11,30 @@ const Login = () => {
     console.log('Form Submitted');
     console.log('Name:', password);
     console.log('Email:', email);    
-      
+    
+    const formData = {
+      email: email,
+      password: password,
+    };
+    try {
+      const response = await fetch("/api/user/login", {
+        method: "POST",
+        body: JSON.stringify(formData),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      if (response.ok) {
+        const data = await response.json();
+        console.log(data.user);
+        sendDataToParent(data.user.name);
+        console.log("Login successful!");
+      } else {
+        console.error("login failed.", response);
+      }
+    } catch (error) {
+      console.log(error);
+    }  
 
   };
   return (

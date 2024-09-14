@@ -3,8 +3,27 @@ import Navbar from './components/nav/Navbar';
 import SignUp from './components/login-signup/SignUp';
 import Login from './components/login-signup/Login';
 import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+import React, {useState} from 'react'
+
 function App() {
-  const menuName = { home: "Home", about:"About",trending: "Trending", loggrdInUser: null};
+  //const menuName = { home: "Home", about:"About",trending: "Trending", loggrdInUser: null};
+  const [menuName, setMenuName] = useState({
+    home: "Home",
+    about: "About",
+    trending: "Trending",
+    loggedInUser: "User",
+  });
+  const [childData, setChildData] = useState(""); 
+  const handleDataFromChild = (data1) => {
+    setChildData(data1); // Update the state with data from child
+    console.log(data1,'from child')
+    setMenuName((prevState) => ({
+      ...prevState,
+      loggedInUser: data1,
+    }));
+    console.log(menuName,'menuName from child')
+  };
+
   return (
     <Router>
     <div className="App">
@@ -14,7 +33,7 @@ function App() {
     </div>
 
     <Routes>
-      <Route path="/login" element={<Login />} />
+      <Route path="/login" element={<Login sendDataToParent={handleDataFromChild} />} />
       <Route path="/signup" element={<SignUp />} />
     </Routes>
     

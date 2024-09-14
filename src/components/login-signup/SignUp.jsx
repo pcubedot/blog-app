@@ -5,13 +5,42 @@ const SignUp = () => {
   const [email, setemail] = useState('Enter Your Email');
   const [password, setPassword] = useState('');
 
+  let [showToast, setShowToast] = useState(false);
+  let [AlertMsg, setAlertMsg] = useState('');
+
   const handleSubmit = async (event) => {
         
     event.preventDefault(); // Prevent the default form submission behavior
     console.log('Form Submitted');
     console.log('Name:', password);
     console.log('Email:', email);    
-      
+    
+    const formData = {
+      name: name,
+      email: email,
+      password: password,
+    };
+
+    try {
+      const response = await fetch("/api/user/signup", {
+        method: "POST",
+        body: JSON.stringify(formData),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      if (response.ok) {
+        const data = await response.json();
+        console.log(data.savedUser);
+        setShowToast(true);
+        setAlertMsg ('Thank You For Sign Up');
+        console.log("Registration successful!");
+      } else {
+        console.error("Registration failed.", response);
+      }
+    } catch (error) {
+      console.log(error);
+    }
 
   };
 
@@ -62,6 +91,28 @@ const SignUp = () => {
         
         
       </form>
+
+    {showToast && (
+      <div
+          className="toast align-items-center text-white bg-primary border-0 show" // Added "show" to ensure visibility
+          role="alert"
+          aria-live="assertive"
+          aria-atomic="true"
+          style={{ position: 'fixed', top: '80px', right: '0px', zIndex: 1 }}
+        >
+          <div className="d-flex">
+            <div className="toast-body">
+            {AlertMsg}
+            </div>
+            <button
+              type="button"
+              className="btn-close btn-close-white me-2 m-auto"
+              aria-label="Close"
+              // Attach the handleClose event to the button
+            ></button>
+          </div>
+        </div>
+        )}
     </div>
   )
 }
