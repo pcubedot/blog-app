@@ -4,6 +4,7 @@ import SignUp from './components/login-signup/SignUp';
 import Login from './components/login-signup/Login';
 import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import React, {useState} from 'react'
+import Blog from './components/blog/Blog';
 
 function App() {
   //const menuName = { home: "Home", about:"About",trending: "Trending", loggrdInUser: null};
@@ -35,6 +36,7 @@ function App() {
     <Routes>
       <Route path="/login" element={<Login sendDataToParent={handleDataFromChild} />} />
       <Route path="/signup" element={<SignUp />} />
+      <Route path="/createBlog" element={<Blog />} />
     </Routes>
     
     </Router>

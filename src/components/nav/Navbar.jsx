@@ -44,8 +44,8 @@ function Navbar(props) {
                 </li>
                 
               </ul>
-          
-              <li className="nav-item dropdown">
+              {menuItems.loggedInUser !== 'User' && (
+                <li className="nav-item dropdown">
                   <a
                     className="nav-link dropdown-toggle p-0 px-2"
                     href="text"
@@ -59,17 +59,15 @@ function Navbar(props) {
                   </a>
                   <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                     <li>
-                      <a className="dropdown-item" href="text">
-                        Profile
+                      <a className="dropdown-item" href="createblog">
+                        Create Blog
                       </a>
                     </li>
-                    <li>
-                      <a className="dropdown-item" href="text">
-                        Log out
-                      </a>
-                    </li>
+                    
                   </ul>
                 </li>
+              
+              )}
               
             </div>
           </div>
