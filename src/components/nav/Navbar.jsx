@@ -8,7 +8,7 @@ function Navbar(props) {
       <div>
         <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
           <div className="container-fluid">
-            <a className="navbar-brand" href="test">
+            <a className="navbar-brand" href="blogs">
               {menuItems.home}
             </a>
             
