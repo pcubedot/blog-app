@@ -1,13 +1,17 @@
 import React from "react";
 
-function Navbar() {
+function Navbar(props) {
+    console.log(props.data);
+    const menuItems = props.data;
+    
     return (
       <div>
         <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
           <div className="container-fluid">
-            <a className="navbar-brand" href="test">
-              Navbar
+            <a className="navbar-brand" href="blogs">
+              {menuItems.home}
             </a>
+            
             <button
               className="navbar-toggler"
               type="button"
@@ -23,30 +27,27 @@ function Navbar() {
               <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                 <li className="nav-item">
                   <a className="nav-link active" aria-current="page" href="text">
-                    Home
+                  {menuItems.about}
                   </a>
                 </li>
                 <li className="nav-item">
                   <a className="nav-link" href="test">
-                    Link
-                  </a>
-                </li>
-                
-                <li className="nav-item">
-                  <a
-                    className="nav-link disabled"
-                    href="text"
-                    tabindex="-1"
-                    aria-disabled="true"
-                  >
-                    Disabled
+                  {menuItems.trending}
                   </a>
                 </li>
               </ul>
-          
-              <li className="nav-item dropdown">
+              <ul className="navbar-nav pt-4 mb-2 mb-lg-0">
+                <li className="nav-item">
+                  <a className="nav-link active p-0" aria-current="page" href="login">
+                  Login/Sign Up
+                  </a>
+                </li>
+                
+              </ul>
+              {menuItems.loggedInUser !== 'User' && (
+                <li className="nav-item dropdown">
                   <a
-                    className="nav-link dropdown-toggle"
+                    className="nav-link dropdown-toggle p-0 px-2"
                     href="text"
                     id="navbarDropdown"
                     role="button"
@@ -54,21 +55,19 @@ function Navbar() {
                     aria-expanded="false"
                     style={{color: '#f1f3f5'}}
                   >
-                    Dropdown
+                    {menuItems.loggedInUser}
                   </a>
                   <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                     <li>
-                      <a className="dropdown-item" href="text">
-                        Profile
+                      <a className="dropdown-item" href="createblog">
+                        Create Blog
                       </a>
                     </li>
-                    <li>
-                      <a className="dropdown-item" href="text">
-                        Log out
-                      </a>
-                    </li>
+                    
                   </ul>
                 </li>
+              
+              )}
               
             </div>
           </div>
